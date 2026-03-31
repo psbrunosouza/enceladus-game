@@ -1,0 +1,22 @@
+<div class="flex gap-2 justify-center mb-16">
+  @for (word of sentenceSlots(); track $index) {
+    <app-word (select)="removeWord(word, $index)" [word]="word" [hidden]="!word"></app-word>
+  }
+</div>
+
+<div class="flex gap-2 w-3/5 flex-wrap justify-center mb-16">
+  @for (word of availableWords(); track $index) {
+    <app-word
+      (select)="selectWord($event)"
+      [word]="word"
+      [locked]="lockedWords().has(word)"
+    ></app-word>
+  }
+
+  <button
+    (click)="confirm()"
+    class="px-4 py-2 border min-h-14.5 min-w-14.5 border-emerald-400 bg-emerald-200 cursor-pointer transition-all font-bold text-4xl"
+  >
+    Ok ⮞
+  </button>
+</div>
